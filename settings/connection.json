@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.swell.store/setting.json",
+  "label": "PostHog connection",
+  "description": "Where your store events are sent.",
+  "fields": [
+    {
+      "id": "api_key",
+      "type": "short_text",
+      "label": "Project API key",
+      "placeholder": "phc_...",
+      "required": true,
+      "description": "PostHog → Project settings → Project API key. This key can only send events; it cannot read your PostHog data."
+    },
+    {
+      "id": "host",
+      "type": "select",
+      "label": "PostHog region",
+      "default": "us",
+      "options": [
+        { "value": "us", "label": "US Cloud" },
+        { "value": "eu", "label": "EU Cloud" },
+        { "value": "custom", "label": "Self-hosted or proxy" }
+      ]
+    },
+    {
+      "id": "custom_host",
+      "type": "short_text",
+      "label": "PostHog URL",
+      "placeholder": "https://posthog.example.com",
+      "conditions": { "connection.host": "custom" }
+    }
+  ]
+}
