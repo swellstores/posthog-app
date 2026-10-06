@@ -1,0 +1,8 @@
+# Swell app push uploads every file not matched here, dotfiles included.
+
+# Agent workspace: specs/plans are force-added to git but must never ship with the app
+.claude/
+
+node_modules/
+.env
+.env.*
