@@ -28,6 +28,14 @@
       "label": "PostHog URL",
       "placeholder": "https://posthog.example.com",
       "conditions": { "connection.host": "custom" }
+    },
+    {
+      "id": "send_test_event",
+      "type": "action",
+      "label": "Send test event",
+      "function": "posthog-test",
+      "loading_label": "Sending test event…",
+      "description": "Save the settings first: actions are disabled while there are unsaved changes."
     }
   ]
 }
