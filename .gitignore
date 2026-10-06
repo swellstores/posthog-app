@@ -2,7 +2,11 @@
 
 # Agent workspace: specs/plans are force-added to git but must never ship with the app
 .claude/
+.superpowers/
 
 node_modules/
 .env
 .env.*
+.wrangler/
+.dev.vars
+.dev.vars.*

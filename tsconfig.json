@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "lib": ["esnext", "webworker", "webworker.iterable"],
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "types": ["@swell/app-types"]
+  },
+  "exclude": ["node_modules", "frontend", "test", "vitest.config.ts"]
+}
