@@ -1,5 +1,6 @@
 {
   "description": "Send Swell orders, payments and subscriptions to PostHog.",
+  "support_email": "support@swell.is",
   "id": "posthog",
   "name": "PostHog",
   "type": "integration",
