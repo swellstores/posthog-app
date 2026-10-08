@@ -9,11 +9,6 @@ export interface Connection {
   host: string;
 }
 
-export interface EventToggle {
-  enabled: boolean;
-  name: string;
-}
-
 function text(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
 }
@@ -34,17 +29,13 @@ export function readConnection(settings: SwellSettings | null | undefined): Conn
 }
 
 /**
- * Installed apps start with empty settings values, so an unset toggle or name
- * means the registry default, never "off".
+ * Installed apps start with empty settings values, so an unset toggle means
+ * the registry default, never "off".
  */
-export function resolveEvent(
+export function isEventEnabled(
   settings: SwellSettings | null | undefined,
-  definition: { key: string; defaultName: string; defaultEnabled: boolean },
-): EventToggle {
-  const events = settings?.events ?? {};
-  const enabled = events[`${definition.key}_enabled`];
-  return {
-    enabled: typeof enabled === 'boolean' ? enabled : definition.defaultEnabled,
-    name: text(events[`${definition.key}_name`]) || definition.defaultName,
-  };
+  definition: { key: string; defaultEnabled: boolean },
+): boolean {
+  const enabled = settings?.events?.[`${definition.key}_enabled`];
+  return typeof enabled === 'boolean' ? enabled : definition.defaultEnabled;
 }

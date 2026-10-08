@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.swell.store/setting.json",
   "label": "Events",
-  "description": "Choose which store events are sent to PostHog. To rename an event, type a new name under it; leave the field empty to use the default.",
+  "description": "Choose which store events are sent to PostHog. Hover an event to see when it is sent.",
   "fields": [
     {
       "type": "field_group",
@@ -15,11 +15,6 @@
           "default": true
         },
         {
-          "id": "order_completed_name",
-          "type": "short_text",
-          "placeholder": "Order Completed"
-        },
-        {
           "id": "order_cancelled_enabled",
           "type": "toggle",
           "label": "Order cancelled",
@@ -27,21 +22,11 @@
           "default": true
         },
         {
-          "id": "order_cancelled_name",
-          "type": "short_text",
-          "placeholder": "Order Cancelled"
-        },
-        {
           "id": "order_delivered_enabled",
           "type": "toggle",
           "label": "Order delivered",
           "description": "When all items of an order are delivered.",
           "default": false
-        },
-        {
-          "id": "order_delivered_name",
-          "type": "short_text",
-          "placeholder": "Order Delivered"
         }
       ]
     },
@@ -57,21 +42,11 @@
           "default": true
         },
         {
-          "id": "payment_completed_name",
-          "type": "short_text",
-          "placeholder": "Payment Completed"
-        },
-        {
           "id": "order_refunded_enabled",
           "type": "toggle",
           "label": "Refund",
           "description": "Every successful refund, partial ones included, with negative revenue. Add it to revenue analytics next to Payment completed.",
           "default": true
-        },
-        {
-          "id": "order_refunded_name",
-          "type": "short_text",
-          "placeholder": "Order Refunded"
         }
       ]
     },
@@ -87,21 +62,11 @@
           "default": true
         },
         {
-          "id": "subscription_started_name",
-          "type": "short_text",
-          "placeholder": "Subscription Started"
-        },
-        {
           "id": "subscription_renewed_enabled",
           "type": "toggle",
           "label": "Subscription renewed",
           "description": "When a subscription is charged for a new period. The first payment is part of the order.",
           "default": true
-        },
-        {
-          "id": "subscription_renewed_name",
-          "type": "short_text",
-          "placeholder": "Subscription Renewed"
         },
         {
           "id": "subscription_payment_failed_enabled",
@@ -111,21 +76,11 @@
           "default": true
         },
         {
-          "id": "subscription_payment_failed_name",
-          "type": "short_text",
-          "placeholder": "Subscription Payment Failed"
-        },
-        {
           "id": "subscription_cancelled_enabled",
           "type": "toggle",
           "label": "Subscription cancelled",
           "description": "When a subscription is cancelled.",
           "default": true
-        },
-        {
-          "id": "subscription_cancelled_name",
-          "type": "short_text",
-          "placeholder": "Subscription Cancelled"
         },
         {
           "id": "subscription_paused_enabled",
@@ -135,21 +90,11 @@
           "default": false
         },
         {
-          "id": "subscription_paused_name",
-          "type": "short_text",
-          "placeholder": "Subscription Paused"
-        },
-        {
           "id": "subscription_resumed_enabled",
           "type": "toggle",
           "label": "Subscription resumed",
           "description": "When a paused subscription is resumed.",
           "default": false
-        },
-        {
-          "id": "subscription_resumed_name",
-          "type": "short_text",
-          "placeholder": "Subscription Resumed"
         }
       ]
     }

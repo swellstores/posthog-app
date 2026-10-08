@@ -67,13 +67,13 @@ describe('handleEvent', () => {
     });
   });
 
-  it('uses the merchant event name', async () => {
+  it('always uses the default event name, ignoring names saved by older versions', async () => {
     vi.spyOn(console, 'log').mockImplementation(() => {});
     const { req, fetchImpl, sentBody } = setup({
       settings: { ...CONFIGURED, events: { order_completed_name: 'purchase' } },
     });
     await handleEvent(req, fetchImpl);
-    expect(sentBody().event).toBe('purchase');
+    expect(sentBody().event).toBe('Order Completed');
   });
 
   it('sends the same uuid when Swell retries the same event', async () => {

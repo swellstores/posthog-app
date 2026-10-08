@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readConnection, resolveEvent } from '../../functions/lib/settings';
+import { isEventEnabled, readConnection } from '../../functions/lib/settings';
 
 describe('readConnection', () => {
   it('is null on a fresh install', () => {
@@ -48,29 +48,17 @@ describe('readConnection', () => {
   });
 });
 
-describe('resolveEvent', () => {
-  const onByDefault = { key: 'order_completed', defaultName: 'Order Completed', defaultEnabled: true };
-  const offByDefault = { key: 'order_delivered', defaultName: 'Order Delivered', defaultEnabled: false };
+describe('isEventEnabled', () => {
+  const onByDefault = { key: 'order_completed', defaultEnabled: true };
+  const offByDefault = { key: 'order_delivered', defaultEnabled: false };
 
-  it('uses registry defaults when nothing is saved', () => {
-    expect(resolveEvent(undefined, onByDefault)).toEqual({ enabled: true, name: 'Order Completed' });
-    expect(resolveEvent({}, offByDefault)).toEqual({ enabled: false, name: 'Order Delivered' });
+  it('uses the registry default when nothing is saved', () => {
+    expect(isEventEnabled(undefined, onByDefault)).toBe(true);
+    expect(isEventEnabled({}, offByDefault)).toBe(false);
   });
 
   it('respects a saved toggle in both directions', () => {
-    expect(resolveEvent({ events: { order_completed_enabled: false } }, onByDefault).enabled).toBe(false);
-    expect(resolveEvent({ events: { order_delivered_enabled: true } }, offByDefault).enabled).toBe(true);
-  });
-
-  it('uses a saved name, trimmed', () => {
-    expect(resolveEvent({ events: { order_completed_name: '  purchase  ' } }, onByDefault).name).toBe(
-      'purchase',
-    );
-  });
-
-  it('falls back to the default name for an empty name', () => {
-    expect(resolveEvent({ events: { order_completed_name: '   ' } }, onByDefault).name).toBe(
-      'Order Completed',
-    );
+    expect(isEventEnabled({ events: { order_completed_enabled: false } }, onByDefault)).toBe(false);
+    expect(isEventEnabled({ events: { order_delivered_enabled: true } }, offByDefault)).toBe(true);
   });
 });

@@ -20,7 +20,7 @@ export interface MappedEvent {
 }
 
 export interface EventDefinition {
-  /** Prefix of the `<key>_enabled` / `<key>_name` settings fields. */
+  /** Prefix of the `<key>_enabled` settings field. */
   key: EventKey;
   /** Swell event type, as listed in the capture function's `model.events`. */
   swellEvent: string;

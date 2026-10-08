@@ -1,7 +1,7 @@
 import { findDefinition, normalizeEventType } from './events';
 import { eventUuid, timestampFromObjectId } from './identity';
 import { capture, type FetchLike } from './posthog';
-import { readConnection, resolveEvent } from './settings';
+import { isEventEnabled, readConnection } from './settings';
 import { fetchPerson } from './swell';
 
 export type HandleOutcome =
@@ -27,10 +27,10 @@ export async function handleEvent(req: SwellRequest, fetchImpl?: FetchLike): Pro
     return 'skipped:not-configured';
   }
 
-  const { enabled, name } = resolveEvent(settings, definition);
-  if (!enabled) {
+  if (!isEventEnabled(settings, definition)) {
     return 'skipped:disabled';
   }
+  const name = definition.defaultName;
 
   const mapped = await definition.map(req);
   if (!mapped?.distinctId) {
