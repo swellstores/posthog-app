@@ -62,24 +62,15 @@ describe('resolveEvent', () => {
     expect(resolveEvent({ events: { order_delivered_enabled: true } }, offByDefault).enabled).toBe(true);
   });
 
-  it('uses a custom name, trimmed, while renaming is on', () => {
-    expect(
-      resolveEvent({ events: { custom_names: true, order_completed_name: '  purchase  ' } }, onByDefault).name,
-    ).toBe('purchase');
-  });
-
-  it('ignores saved names while renaming is off', () => {
-    expect(resolveEvent({ events: { order_completed_name: 'purchase' } }, onByDefault).name).toBe(
-      'Order Completed',
+  it('uses a saved name, trimmed', () => {
+    expect(resolveEvent({ events: { order_completed_name: '  purchase  ' } }, onByDefault).name).toBe(
+      'purchase',
     );
-    expect(
-      resolveEvent({ events: { custom_names: false, order_completed_name: 'purchase' } }, onByDefault).name,
-    ).toBe('Order Completed');
   });
 
   it('falls back to the default name for an empty name', () => {
-    expect(
-      resolveEvent({ events: { custom_names: true, order_completed_name: '   ' } }, onByDefault).name,
-    ).toBe('Order Completed');
+    expect(resolveEvent({ events: { order_completed_name: '   ' } }, onByDefault).name).toBe(
+      'Order Completed',
+    );
   });
 });

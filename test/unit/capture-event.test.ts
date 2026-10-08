@@ -70,7 +70,7 @@ describe('handleEvent', () => {
   it('uses the merchant event name', async () => {
     vi.spyOn(console, 'log').mockImplementation(() => {});
     const { req, fetchImpl, sentBody } = setup({
-      settings: { ...CONFIGURED, events: { custom_names: true, order_completed_name: 'purchase' } },
+      settings: { ...CONFIGURED, events: { order_completed_name: 'purchase' } },
     });
     await handleEvent(req, fetchImpl);
     expect(sentBody().event).toBe('purchase');
