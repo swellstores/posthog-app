@@ -1,6 +1,6 @@
 # Swell app push uploads every file not matched here, dotfiles included.
 
-# Agent workspace: specs/plans are force-added to git but must never ship with the app
+# Local agent workspace: never committed, never shipped with the app
 .claude/
 .superpowers/
 

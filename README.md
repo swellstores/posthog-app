@@ -2,8 +2,6 @@
 
 A Swell integration app that sends a store's orders, payments, refunds and subscription changes to the merchant's PostHog project through the [PostHog Capture API](https://posthog.com/docs/api/capture). The merchant-facing description shown in the Swell App Marketplace is [DESCRIPTION.md](DESCRIPTION.md); this file is for developers.
 
-Design decisions and the platform facts behind them are in the spec, `.claude/superpowers/specs/2026-10-06-posthog-app-design.md` (kept in git, never pushed with the app).
-
 ## How it works
 
 ```
@@ -80,9 +78,9 @@ swell inspect functions --app=.
 swell inspect settings app.posthog
 ```
 
-Things that bit us (details in the spec, §6):
+Things that bit us:
 
-- `swell app push` uploads every file not in `.gitignore`, dotfiles included. `.claude/` and `.superpowers/` are gitignored for that reason; their files are tracked with `git add -f`.
+- `swell app push` uploads every file not in `.gitignore`, dotfiles included. Keep local working files in gitignored folders (`.claude/`, `.superpowers/`).
 - All settings files collapse into one platform record. Removing a settings file deletes the whole record, and pushing several settings files at once can drop groups. Push settings files one at a time and check `swell inspect settings app.posthog`.
 - In a settings file, a first top-level `toggle` is shown in the section header, so each toggle sits in its own `field_row`. `boolean` with `ui: "toggle"` loses its `default` in the form.
 - Push `assets/` after `images` is in `swell.json`, or the screenshots are not bound (`swell app push assets --force` fixes it).
@@ -106,11 +104,7 @@ swell api get '/:logs?limit=50&where[app_id]=<app record id>'
 | Icon | `assets/icon.png` |
 | Screenshots | `assets/images/*.png` (3200 × 1800), listed in `swell.json` `images`; the listing shows four |
 
-The screenshots are rendered from HTML in `.superpowers/listing/` (not pushed with the app):
-
-```bash
-PLAYWRIGHT=<path to a playwright package> node .superpowers/listing/render.mjs
-```
+The screenshots were rendered from HTML mock-ups with Playwright at 1600 × 900 and a device scale factor of 2; the sources are not part of this repository.
 
 To release, the platform requires `name`, `description`, an icon and at least one bound image:
 
