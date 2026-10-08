@@ -1,83 +1,108 @@
 {
   "$schema": "https://json.swell.store/setting.json",
   "label": "Events",
-  "description": "Choose which store events are sent to PostHog and what they are called. Leave a name empty to use the default shown in the field.",
+  "description": "Choose which store events are sent to PostHog.",
   "fields": [
     {
-      "type": "field_row",
+      "id": "custom_names",
+      "type": "toggle",
+      "label": "Rename events",
+      "description": "Use your own event names, for example to match events you already send to PostHog. When off, the default names are used.",
+      "default": false
+    },
+    {
+      "type": "field_group",
+      "label": "Orders",
       "fields": [
-        { "id": "order_completed_enabled", "type": "boolean", "label": "Order completed", "default": true },
-        { "id": "order_completed_name", "type": "short_text", "label": "Event name", "placeholder": "Order Completed" }
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "order_completed_enabled", "type": "toggle", "label": "Order completed", "description": "When a customer places an order.", "default": true, "admin_span": 2 },
+            { "id": "order_completed_name", "type": "short_text", "label": "Event name", "placeholder": "Order Completed", "admin_span": 2, "conditions": { "events.custom_names": true, "events.order_completed_enabled": true } }
+          ]
+        },
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "order_cancelled_enabled", "type": "toggle", "label": "Order cancelled", "description": "When an order is cancelled.", "default": true, "admin_span": 2 },
+            { "id": "order_cancelled_name", "type": "short_text", "label": "Event name", "placeholder": "Order Cancelled", "admin_span": 2, "conditions": { "events.custom_names": true, "events.order_cancelled_enabled": true } }
+          ]
+        },
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "order_delivered_enabled", "type": "toggle", "label": "Order delivered", "description": "When all items of an order are delivered.", "default": false, "admin_span": 2 },
+            { "id": "order_delivered_name", "type": "short_text", "label": "Event name", "placeholder": "Order Delivered", "admin_span": 2, "conditions": { "events.custom_names": true, "events.order_delivered_enabled": true } }
+          ]
+        }
       ]
     },
     {
-      "type": "field_row",
+      "type": "field_group",
+      "label": "Revenue",
       "fields": [
-        { "id": "order_cancelled_enabled", "type": "boolean", "label": "Order cancelled", "default": true },
-        { "id": "order_cancelled_name", "type": "short_text", "label": "Event name", "placeholder": "Order Cancelled" }
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "payment_completed_enabled", "type": "toggle", "label": "Payment completed", "description": "Every successful charge for orders, invoices and subscriptions, with revenue. Use it as the revenue event in PostHog revenue analytics. Gift card and store credit payments are not sent.", "default": true, "admin_span": 2 },
+            { "id": "payment_completed_name", "type": "short_text", "label": "Event name", "placeholder": "Payment Completed", "admin_span": 2, "conditions": { "events.custom_names": true, "events.payment_completed_enabled": true } }
+          ]
+        },
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "order_refunded_enabled", "type": "toggle", "label": "Refund", "description": "Every successful refund, partial ones included, with negative revenue. Add it to revenue analytics next to Payment completed.", "default": true, "admin_span": 2 },
+            { "id": "order_refunded_name", "type": "short_text", "label": "Event name", "placeholder": "Order Refunded", "admin_span": 2, "conditions": { "events.custom_names": true, "events.order_refunded_enabled": true } }
+          ]
+        }
       ]
     },
     {
-      "type": "field_row",
+      "type": "field_group",
+      "label": "Subscriptions",
       "fields": [
-        { "id": "order_delivered_enabled", "type": "boolean", "label": "Order delivered", "default": false },
-        { "id": "order_delivered_name", "type": "short_text", "label": "Event name", "placeholder": "Order Delivered" }
-      ]
-    },
-    {
-      "type": "field_row",
-      "fields": [
-        { "id": "payment_completed_enabled", "type": "boolean", "label": "Payment completed (revenue)", "default": true },
-        { "id": "payment_completed_name", "type": "short_text", "label": "Event name", "placeholder": "Payment Completed" }
-      ]
-    },
-    {
-      "type": "field_row",
-      "fields": [
-        { "id": "order_refunded_enabled", "type": "boolean", "label": "Refund (negative revenue)", "default": true },
-        { "id": "order_refunded_name", "type": "short_text", "label": "Event name", "placeholder": "Order Refunded" }
-      ]
-    },
-    {
-      "type": "field_row",
-      "fields": [
-        { "id": "subscription_started_enabled", "type": "boolean", "label": "Subscription started", "default": true },
-        { "id": "subscription_started_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Started" }
-      ]
-    },
-    {
-      "type": "field_row",
-      "fields": [
-        { "id": "subscription_renewed_enabled", "type": "boolean", "label": "Subscription renewed", "default": true },
-        { "id": "subscription_renewed_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Renewed" }
-      ]
-    },
-    {
-      "type": "field_row",
-      "fields": [
-        { "id": "subscription_payment_failed_enabled", "type": "boolean", "label": "Subscription payment failed", "default": true },
-        { "id": "subscription_payment_failed_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Payment Failed" }
-      ]
-    },
-    {
-      "type": "field_row",
-      "fields": [
-        { "id": "subscription_cancelled_enabled", "type": "boolean", "label": "Subscription cancelled", "default": true },
-        { "id": "subscription_cancelled_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Cancelled" }
-      ]
-    },
-    {
-      "type": "field_row",
-      "fields": [
-        { "id": "subscription_paused_enabled", "type": "boolean", "label": "Subscription paused", "default": false },
-        { "id": "subscription_paused_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Paused" }
-      ]
-    },
-    {
-      "type": "field_row",
-      "fields": [
-        { "id": "subscription_resumed_enabled", "type": "boolean", "label": "Subscription resumed", "default": false },
-        { "id": "subscription_resumed_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Resumed" }
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "subscription_started_enabled", "type": "toggle", "label": "Subscription started", "description": "When a customer starts a subscription, trials included.", "default": true, "admin_span": 2 },
+            { "id": "subscription_started_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Started", "admin_span": 2, "conditions": { "events.custom_names": true, "events.subscription_started_enabled": true } }
+          ]
+        },
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "subscription_renewed_enabled", "type": "toggle", "label": "Subscription renewed", "description": "When a subscription is charged for a new period. The first payment is part of the order.", "default": true, "admin_span": 2 },
+            { "id": "subscription_renewed_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Renewed", "admin_span": 2, "conditions": { "events.custom_names": true, "events.subscription_renewed_enabled": true } }
+          ]
+        },
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "subscription_payment_failed_enabled", "type": "toggle", "label": "Subscription payment failed", "description": "When a subscription charge fails, an early sign of churn.", "default": true, "admin_span": 2 },
+            { "id": "subscription_payment_failed_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Payment Failed", "admin_span": 2, "conditions": { "events.custom_names": true, "events.subscription_payment_failed_enabled": true } }
+          ]
+        },
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "subscription_cancelled_enabled", "type": "toggle", "label": "Subscription cancelled", "description": "When a subscription is cancelled.", "default": true, "admin_span": 2 },
+            { "id": "subscription_cancelled_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Cancelled", "admin_span": 2, "conditions": { "events.custom_names": true, "events.subscription_cancelled_enabled": true } }
+          ]
+        },
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "subscription_paused_enabled", "type": "toggle", "label": "Subscription paused", "description": "When a subscription is paused.", "default": false, "admin_span": 2 },
+            { "id": "subscription_paused_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Paused", "admin_span": 2, "conditions": { "events.custom_names": true, "events.subscription_paused_enabled": true } }
+          ]
+        },
+        {
+          "type": "field_row",
+          "fields": [
+            { "id": "subscription_resumed_enabled", "type": "toggle", "label": "Subscription resumed", "description": "When a paused subscription is resumed.", "default": false, "admin_span": 2 },
+            { "id": "subscription_resumed_name", "type": "short_text", "label": "Event name", "placeholder": "Subscription Resumed", "admin_span": 2, "conditions": { "events.custom_names": true, "events.subscription_resumed_enabled": true } }
+          ]
+        }
       ]
     }
   ]

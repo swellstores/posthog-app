@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.swell.store/setting.json",
-  "label": "PostHog connection",
-  "description": "Where your store events are sent.",
+  "label": "Connection",
+  "description": "The PostHog project your store events are sent to.",
   "fields": [
     {
       "id": "api_key",

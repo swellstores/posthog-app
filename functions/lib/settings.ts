@@ -35,7 +35,8 @@ export function readConnection(settings: SwellSettings | null | undefined): Conn
 
 /**
  * Installed apps start with empty settings values, so an unset toggle or name
- * means the registry default, never "off".
+ * means the registry default, never "off". Saved names apply only while
+ * "Rename events" is on: the form hides them otherwise.
  */
 export function resolveEvent(
   settings: SwellSettings | null | undefined,
@@ -43,8 +44,9 @@ export function resolveEvent(
 ): EventToggle {
   const events = settings?.events ?? {};
   const enabled = events[`${definition.key}_enabled`];
+  const customName = events.custom_names === true ? text(events[`${definition.key}_name`]) : '';
   return {
     enabled: typeof enabled === 'boolean' ? enabled : definition.defaultEnabled,
-    name: text(events[`${definition.key}_name`]) || definition.defaultName,
+    name: customName || definition.defaultName,
   };
 }
