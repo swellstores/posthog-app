@@ -7,7 +7,10 @@ export const TEST_EVENT_NAME = 'Swell Test Event';
 export async function sendTestEvent(req: SwellRequest, fetchImpl?: FetchLike): Promise<{ message: string }> {
   const connection = readConnection(await req.swell.settings());
   if (!connection) {
-    return { message: 'Enter your PostHog project API key, save the settings, then send the test event.' };
+    return {
+      message:
+        'Enter your PostHog project API key (and, for self-hosted PostHog, a full URL starting with https://), save the settings, then send the test event.',
+    };
   }
 
   if ((await checkApiKey(connection, fetchImpl)) === 'invalid') {

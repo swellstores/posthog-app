@@ -13,7 +13,17 @@ function text(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
 }
 
-/** Returns null until the merchant has entered a key (and a URL, for a custom host). */
+/** A merchant-typed URL is usable only with an http(s) scheme; anything else would fail every event. */
+function isHttpUrl(value: string): boolean {
+  try {
+    const { protocol } = new URL(value);
+    return protocol === 'https:' || protocol === 'http:';
+  } catch {
+    return false;
+  }
+}
+
+/** Returns null until the merchant has entered a key (and a valid URL, for a custom host). */
 export function readConnection(settings: SwellSettings | null | undefined): Connection | null {
   const connection = settings?.connection ?? {};
   const apiKey = text(connection.api_key);
@@ -22,7 +32,7 @@ export function readConnection(settings: SwellSettings | null | undefined): Conn
     choice === 'custom' ? text(connection.custom_host) : HOSTS[choice as keyof typeof HOSTS] ?? HOSTS.us
   ).replace(/\/+$/, '');
 
-  if (!apiKey || !host) {
+  if (!apiKey || !isHttpUrl(host)) {
     return null;
   }
   return { apiKey, host };

@@ -25,6 +25,16 @@ describe('sendTestEvent', () => {
     expect(fetchImpl).not.toHaveBeenCalled();
   });
 
+  it('asks for a full URL when the custom host is not one', async () => {
+    const fetchImpl = posthog(200);
+    const result = await sendTestEvent(
+      requestWith({ connection: { api_key: 'phc_test', host: 'custom', custom_host: 'posthog.example.com' } }),
+      fetchImpl,
+    );
+    expect(result.message).toContain('https://');
+    expect(fetchImpl).not.toHaveBeenCalled();
+  });
+
   it('reports a key PostHog rejects without sending', async () => {
     const fetchImpl = posthog(401);
     const result = await sendTestEvent(requestWith(CONFIGURED), fetchImpl);

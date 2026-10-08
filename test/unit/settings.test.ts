@@ -41,6 +41,15 @@ describe('readConnection', () => {
     ).toBeNull();
   });
 
+  it('is null when the custom host is not an http(s) URL, so a typo cannot fail every event', () => {
+    for (const custom_host of ['posthog.example.com', 'ftp://posthog.example.com', 'not a url']) {
+      expect(readConnection({ connection: { api_key: 'phc_abc', host: 'custom', custom_host } })).toBeNull();
+    }
+    expect(
+      readConnection({ connection: { api_key: 'phc_abc', host: 'custom', custom_host: 'http://localhost:4318' } })?.host,
+    ).toBe('http://localhost:4318');
+  });
+
   it('falls back to US Cloud for an unknown host value', () => {
     expect(readConnection({ connection: { api_key: 'phc_abc', host: 'mars' } })?.host).toBe(
       'https://us.i.posthog.com',
