@@ -6,7 +6,8 @@ import type { EventDefinition } from '../types';
 interface SwellRefund {
   id: string;
   parent_id: string;
-  account_id: string;
+  /** Not always set on the refund record; the parent payment always has it. */
+  account_id?: string | null;
   amount?: number | null;
   currency?: string | null;
   success?: boolean | null;
@@ -27,8 +28,15 @@ export const orderRefunded: EventDefinition = {
     if (!refund || refund.success !== true) {
       return null;
     }
+    const accountId =
+      refund.account_id ||
+      (await fetchRecord<{ account_id?: string | null }>(req, '/payments', refund.parent_id))
+        ?.account_id;
+    if (!accountId) {
+      return null;
+    }
     return {
-      distinctId: refund.account_id,
+      distinctId: accountId,
       properties: compact({
         revenue: -toMinorUnits(refund.amount, refund.currency),
         currency: refund.currency,

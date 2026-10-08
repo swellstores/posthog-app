@@ -106,6 +106,23 @@ describe('orderRefunded', () => {
     expect(get).toHaveBeenCalledWith('/payments:refunds/{id}', { id: REFUND.id });
   });
 
+  it('takes the customer from the parent payment when the refund has none', async () => {
+    const records: Record<string, unknown> = {
+      '/payments:refunds/{id}': { ...REFUND, account_id: null },
+      '/payments/{id}': PAYMENT,
+    };
+    const get = vi.fn(async (url: string) => {
+      if (url in records) return records[url];
+      throw new Error(`unexpected GET ${url}`);
+    });
+    const req = createMockRequest({ data: { id: REFUND.id, parent_id: PAYMENT.id }, swell: { get } });
+
+    const mapped = await orderRefunded.map(req);
+
+    expect(mapped?.distinctId).toBe(PAYMENT.account_id);
+    expect(get).toHaveBeenCalledWith('/payments/{id}', { id: PAYMENT.id });
+  });
+
   it('includes the refund reason when given', async () => {
     const mapped = await orderRefunded.map(requestFor('/payments:refunds/{id}', { ...REFUND, reason: 'damaged' }).req);
     expect(mapped?.properties.reason).toBe('damaged');
