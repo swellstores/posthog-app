@@ -23,7 +23,7 @@ export async function sendTestEvent(req: SwellRequest, fetchImpl?: FetchLike): P
       {
         event: TEST_EVENT_NAME,
         distinct_id: `swell-test-${req.store.id}`,
-        properties: { swell_store_id: req.store.id },
+        properties: { swell_store_id: req.store.id, $geoip_disable: true },
         timestamp: new Date().toISOString(),
         uuid: crypto.randomUUID(),
       },

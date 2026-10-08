@@ -43,7 +43,7 @@ describe('sendTestEvent', () => {
       api_key: 'phc_test',
       event: 'Swell Test Event',
       distinct_id: 'swell-test-store_test',
-      properties: { swell_store_id: 'store_test' },
+      properties: { swell_store_id: 'store_test', $geoip_disable: true },
     });
   });
 

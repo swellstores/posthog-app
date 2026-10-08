@@ -44,7 +44,13 @@ export async function handleEvent(req: SwellRequest, fetchImpl?: FetchLike): Pro
     {
       event: name,
       distinct_id: mapped.distinctId,
-      properties: { ...mapped.properties, $set: person, swell_store_id: req.store.id },
+      properties: {
+        ...mapped.properties,
+        $set: person,
+        // The request comes from a Cloudflare worker, not the customer: its IP says nothing about them.
+        $geoip_disable: true,
+        swell_store_id: req.store.id,
+      },
       timestamp: (eventId && timestampFromObjectId(eventId)) || new Date().toISOString(),
       uuid: eventId ? await eventUuid(eventId) : crypto.randomUUID(),
     },

@@ -60,6 +60,7 @@ describe('handleEvent', () => {
         guest: false,
         products: [],
         $set: { email: 'ivan@example.com', name: 'Ivan Petrov' },
+        $geoip_disable: true,
         swell_store_id: 'store_test',
       },
       timestamp: new Date(0x6abfc412 * 1000).toISOString(),
