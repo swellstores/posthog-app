@@ -35,6 +35,7 @@
       "label": "Send test event",
       "function": "posthog-test",
       "loading_label": "Sending test event…",
+      "hint": "Sends one \"Swell Test Event\" to your PostHog project to check the connection.",
       "description": "Save the settings first: actions are disabled while there are unsaved changes."
     }
   ]
