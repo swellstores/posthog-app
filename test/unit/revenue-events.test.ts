@@ -123,6 +123,11 @@ describe('orderRefunded', () => {
     expect(get).toHaveBeenCalledWith('/payments/{id}', { id: PAYMENT.id });
   });
 
+  it('skips refunds of gift card and store credit payments, whose charges were never revenue', async () => {
+    await expect(orderRefunded.map(requestFor('/payments:refunds/{id}', { ...REFUND, method: 'account' }).req)).resolves.toBeNull();
+    await expect(orderRefunded.map(requestFor('/payments:refunds/{id}', { ...REFUND, method: 'giftcard' }).req)).resolves.toBeNull();
+  });
+
   it('includes the refund reason when given', async () => {
     const mapped = await orderRefunded.map(requestFor('/payments:refunds/{id}', { ...REFUND, reason: 'damaged' }).req);
     expect(mapped?.properties.reason).toBe('damaged');

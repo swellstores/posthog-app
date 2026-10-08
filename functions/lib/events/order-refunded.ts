@@ -2,12 +2,15 @@ import { toMinorUnits } from '../money';
 import { compact } from '../object';
 import { eventRecordId, fetchRecord } from '../swell';
 import type { EventDefinition } from '../types';
+import { NON_REVENUE_METHODS } from './payment-completed';
 
 interface SwellRefund {
   id: string;
   parent_id: string;
   /** Not always set on the refund record; the parent payment always has it. */
   account_id?: string | null;
+  /** Method of the refunded payment, e.g. `card` or `account`. */
+  method?: string | null;
   amount?: number | null;
   currency?: string | null;
   success?: boolean | null;
@@ -26,7 +29,8 @@ export const orderRefunded: EventDefinition = {
   async map(req) {
     const id = eventRecordId(req);
     const refund = id ? await fetchRecord<SwellRefund>(req, '/payments:refunds', id) : null;
-    if (!refund || refund.success !== true) {
+    // Refunding a charge that was never counted as revenue must not subtract any.
+    if (!refund || refund.success !== true || NON_REVENUE_METHODS.has(refund.method ?? '')) {
       return null;
     }
     const accountId =
