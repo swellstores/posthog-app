@@ -1,43 +1,43 @@
 {
-  "description": "Send Swell orders, payments and subscriptions to PostHog",
-  "support_email": "support@swell.is",
-  "documentation_url": "https://developers.swell.is/app-guides/posthog",
-  "price_external": true,
-  "id": "posthog",
-  "name": "PostHog",
-  "type": "integration",
-  "version": "1.0.0",
-  "images": [
-    {
-      "id": "events",
-      "image_src": "assets/images/1-events.png",
-      "title": "Every order, in PostHog",
-      "description": "Orders, payments and subscriptions arrive in PostHog as server-side events, tied to the customer's account and email."
-    },
-    {
-      "id": "revenue",
-      "image_src": "assets/images/2-revenue.png",
-      "title": "Revenue you can trust",
-      "description": "Add Payment Completed and Order Refunded as revenue events in PostHog. Every charge counts once, and refunds subtract revenue, partial ones too."
-    },
-    {
-      "id": "subscriptions",
-      "image_src": "assets/images/3-subscriptions.png",
-      "title": "Subscriptions, start to churn",
-      "description": "Starts, renewals, failed payments and cancellations land on every customer's timeline."
-    },
-    {
-      "id": "setup",
-      "image_src": "assets/images/4-setup.png",
-      "title": "Set up in a minute",
-      "description": "Paste your PostHog project key, pick US, EU or your own host, send a test event and choose which events to send."
-    }
-  ],
-  "permissions": [
-    "read_orders",
-    "read_payments",
-    "read_subscriptions",
-    "read_accounts",
-    "read_settings"
-  ]
+	"description": "Send Swell orders, payments and subscriptions to PostHog",
+	"support_email": "support@swell.is",
+	"documentation_url": "https://developers.swell.is/app-guides/posthog",
+	"price_external": true,
+	"id": "posthog",
+	"name": "PostHog",
+	"type": "integration",
+	"version": "1.0.1",
+	"images": [
+		{
+			"id": "events",
+			"image_src": "assets/images/1-events.png",
+			"title": "Every order, in PostHog",
+			"description": "Orders, payments and subscriptions arrive in PostHog as server-side events, tied to the customer's account and email."
+		},
+		{
+			"id": "revenue",
+			"image_src": "assets/images/2-revenue.png",
+			"title": "Revenue you can trust",
+			"description": "Add Payment Completed and Order Refunded as revenue events in PostHog. Every charge counts once, and refunds subtract revenue, partial ones too."
+		},
+		{
+			"id": "subscriptions",
+			"image_src": "assets/images/3-subscriptions.png",
+			"title": "Subscriptions, start to churn",
+			"description": "Starts, renewals, failed payments and cancellations land on every customer's timeline."
+		},
+		{
+			"id": "setup",
+			"image_src": "assets/images/4-setup.png",
+			"title": "Set up in a minute",
+			"description": "Paste your PostHog project key, pick US, EU or your own host, send a test event and choose which events to send."
+		}
+	],
+	"permissions": [
+		"read_orders",
+		"read_payments",
+		"read_subscriptions",
+		"read_accounts",
+		"read_settings"
+	]
 }
