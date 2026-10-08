@@ -5,6 +5,32 @@
   "type": "integration",
   "version": "1.0.0",
   "full_description": "Send your store's orders, payments, refunds and subscription changes to PostHog as server-side events. Events are sent by Swell itself, so ad blockers and closed browser tabs cannot lose them, and every event is tied to the customer's account with their name and email.\n\nWhat you get:\n- Order Completed, Order Cancelled and Order Delivered events with totals and products\n- Payment Completed and Order Refunded events carrying revenue for PostHog revenue analytics\n- Subscription Started, Renewed, Payment Failed, Cancelled, Paused and Resumed events\n\nTurn each event on or off in the app settings. Event names follow PostHog's e-commerce spec, so they work with PostHog's templates and revenue analytics out of the box. Works with PostHog Cloud (US and EU) and self-hosted PostHog.",
+  "images": [
+    {
+      "id": "events",
+      "image_src": "assets/images/1-events.png",
+      "title": "Every order, in PostHog",
+      "description": "Orders, payments and subscriptions arrive in PostHog as server-side events, tied to the customer's account with their name and email."
+    },
+    {
+      "id": "revenue",
+      "image_src": "assets/images/2-revenue.png",
+      "title": "Revenue you can trust",
+      "description": "Every charge is counted once, whether it pays for an order or a subscription. Refunds subtract revenue, partial ones too."
+    },
+    {
+      "id": "subscriptions",
+      "image_src": "assets/images/3-subscriptions.png",
+      "title": "Subscriptions, start to churn",
+      "description": "Starts, renewals, failed payments and cancellations land on every customer's timeline."
+    },
+    {
+      "id": "setup",
+      "image_src": "assets/images/4-setup.png",
+      "title": "Set up in a minute",
+      "description": "Paste your PostHog project key, pick US, EU or your own host, send a test event and choose which events to send."
+    }
+  ],
   "permissions": [
     "read_orders",
     "read_payments",
