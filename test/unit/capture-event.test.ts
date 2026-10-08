@@ -95,7 +95,7 @@ describe('handleEvent', () => {
   });
 
   it('skips events the merchant turned off', async () => {
-    const { req, fetchImpl } = setup({ settings: { ...CONFIGURED, events: { order_completed_enabled: false } } });
+    const { req, fetchImpl } = setup({ settings: { ...CONFIGURED, orders: { order_completed_enabled: false } } });
     await expect(handleEvent(req, fetchImpl)).resolves.toBe('skipped:disabled');
     expect(fetchImpl).not.toHaveBeenCalled();
   });

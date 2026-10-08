@@ -49,16 +49,20 @@ describe('readConnection', () => {
 });
 
 describe('isEventEnabled', () => {
-  const onByDefault = { key: 'order_completed', defaultEnabled: true };
-  const offByDefault = { key: 'order_delivered', defaultEnabled: false };
+  const onByDefault = { key: 'order_completed', settingsGroup: 'orders', defaultEnabled: true } as const;
+  const offByDefault = { key: 'order_delivered', settingsGroup: 'orders', defaultEnabled: false } as const;
 
   it('uses the registry default when nothing is saved', () => {
     expect(isEventEnabled(undefined, onByDefault)).toBe(true);
     expect(isEventEnabled({}, offByDefault)).toBe(false);
   });
 
-  it('respects a saved toggle in both directions', () => {
-    expect(isEventEnabled({ events: { order_completed_enabled: false } }, onByDefault)).toBe(false);
-    expect(isEventEnabled({ events: { order_delivered_enabled: true } }, offByDefault)).toBe(true);
+  it('reads the saved toggle from the event settings group', () => {
+    expect(isEventEnabled({ orders: { order_completed_enabled: false } }, onByDefault)).toBe(false);
+    expect(isEventEnabled({ orders: { order_delivered_enabled: true } }, offByDefault)).toBe(true);
+  });
+
+  it('ignores a toggle saved under another group', () => {
+    expect(isEventEnabled({ revenue: { order_completed_enabled: false } }, onByDefault)).toBe(true);
   });
 });

@@ -34,8 +34,8 @@ export function readConnection(settings: SwellSettings | null | undefined): Conn
  */
 export function isEventEnabled(
   settings: SwellSettings | null | undefined,
-  definition: { key: string; defaultEnabled: boolean },
+  definition: { key: string; settingsGroup: string; defaultEnabled: boolean },
 ): boolean {
-  const enabled = settings?.events?.[`${definition.key}_enabled`];
+  const enabled = settings?.[definition.settingsGroup]?.[`${definition.key}_enabled`];
   return typeof enabled === 'boolean' ? enabled : definition.defaultEnabled;
 }

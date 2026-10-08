@@ -19,6 +19,7 @@ interface SwellRefund {
 /** One event per refund (partial ones too), unlike `order.refunded`, which fires only on a full refund. */
 export const orderRefunded: EventDefinition = {
   key: 'order_refunded',
+  settingsGroup: 'revenue',
   swellEvent: 'payment.refund.succeeded',
   defaultName: 'Order Refunded',
   defaultEnabled: true,

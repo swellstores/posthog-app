@@ -57,6 +57,7 @@ function defineSubscriptionEvent(options: {
   const { skip, extra, ...definition } = options;
   return {
     ...definition,
+    settingsGroup: 'subscriptions',
     async map(req) {
       const id = eventRecordId(req);
       const subscription = id ? await fetchRecord<SwellSubscription>(req, '/subscriptions', id) : null;

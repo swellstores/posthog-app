@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json.swell.store/setting.json",
+  "label": "Subscriptions",
+  "description": "Subscription lifecycle events. Hover an event to see when it is sent.",
+  "fields": [
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "subscription_started_enabled",
+          "label": "Subscription started",
+          "description": "When a customer starts a subscription, trials included.",
+          "default": true,
+          "type": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "subscription_renewed_enabled",
+          "label": "Subscription renewed",
+          "description": "When a subscription is charged for a new period. The first payment is part of the order.",
+          "default": true,
+          "type": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "subscription_payment_failed_enabled",
+          "label": "Subscription payment failed",
+          "description": "When a subscription charge fails, an early sign of churn.",
+          "default": true,
+          "type": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "subscription_cancelled_enabled",
+          "label": "Subscription cancelled",
+          "description": "When a subscription is cancelled.",
+          "default": true,
+          "type": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "subscription_paused_enabled",
+          "label": "Subscription paused",
+          "description": "When a subscription is paused.",
+          "default": false,
+          "type": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "subscription_resumed_enabled",
+          "label": "Subscription resumed",
+          "description": "When a paused subscription is resumed.",
+          "default": false,
+          "type": "toggle"
+        }
+      ]
+    }
+  ]
+}

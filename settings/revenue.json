@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.swell.store/setting.json",
+  "label": "Revenue",
+  "description": "Money events carrying revenue. Use them in PostHog revenue analytics.",
+  "fields": [
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "payment_completed_enabled",
+          "label": "Payment completed",
+          "description": "Every successful charge for orders, invoices and subscriptions, with revenue. Use it as the revenue event in PostHog revenue analytics. Gift card and store credit payments are not sent.",
+          "default": true,
+          "type": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "order_refunded_enabled",
+          "label": "Refund",
+          "description": "Every successful refund, partial ones included, with negative revenue. Add it to revenue analytics next to Payment completed.",
+          "default": true,
+          "type": "toggle"
+        }
+      ]
+    }
+  ]
+}

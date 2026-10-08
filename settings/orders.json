@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json.swell.store/setting.json",
+  "label": "Orders",
+  "description": "Order lifecycle events. Hover an event to see when it is sent.",
+  "fields": [
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "order_completed_enabled",
+          "label": "Order completed",
+          "description": "When a customer places an order.",
+          "default": true,
+          "type": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "order_cancelled_enabled",
+          "label": "Order cancelled",
+          "description": "When an order is cancelled.",
+          "default": true,
+          "type": "toggle"
+        }
+      ]
+    },
+    {
+      "type": "field_row",
+      "fields": [
+        {
+          "id": "order_delivered_enabled",
+          "label": "Order delivered",
+          "description": "When all items of an order are delivered.",
+          "default": false,
+          "type": "toggle"
+        }
+      ]
+    }
+  ]
+}

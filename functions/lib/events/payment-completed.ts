@@ -21,6 +21,7 @@ interface SwellPayment {
 /** Every charge is exactly one payment, whatever it pays for, so revenue never double counts. */
 export const paymentCompleted: EventDefinition = {
   key: 'payment_completed',
+  settingsGroup: 'revenue',
   swellEvent: 'payment.succeeded',
   defaultName: 'Payment Completed',
   defaultEnabled: true,

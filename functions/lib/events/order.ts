@@ -62,6 +62,7 @@ function defineOrderEvent(options: {
   const { properties, ...definition } = options;
   return {
     ...definition,
+    settingsGroup: 'orders',
     async map(req) {
       const id = eventRecordId(req);
       const order = id ? await fetchRecord<SwellOrder>(req, '/orders', id) : null;

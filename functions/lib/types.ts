@@ -11,6 +11,8 @@ export type EventKey =
   | 'subscription_paused'
   | 'subscription_resumed';
 
+export type SettingsGroup = 'orders' | 'revenue' | 'subscriptions';
+
 export type Properties = Record<string, unknown>;
 
 export interface MappedEvent {
@@ -22,6 +24,8 @@ export interface MappedEvent {
 export interface EventDefinition {
   /** Prefix of the `<key>_enabled` settings field. */
   key: EventKey;
+  /** Settings file (`settings/<group>.json`) that holds the event's toggle. */
+  settingsGroup: SettingsGroup;
   /** Swell event type, as listed in the capture function's `model.events`. */
   swellEvent: string;
   defaultName: string;
