@@ -3,8 +3,6 @@
 # Agent workspace: specs/plans are force-added to git but must never ship with the app
 .claude/
 .superpowers/
-# Sources of the marketplace images (rendered into assets/ by listing/render.mjs)
-listing/
 
 node_modules/
 .env

@@ -4,7 +4,6 @@
   "name": "PostHog",
   "type": "integration",
   "version": "1.0.0",
-  "full_description": "Send your store's orders, payments, refunds and subscription changes to PostHog as server-side events. Events are sent by Swell itself, so ad blockers and closed browser tabs cannot lose them, and every event is tied to the customer's account with their name and email.\n\nWhat you get:\n- Order Completed, Order Cancelled and Order Delivered events with totals and products\n- Payment Completed and Order Refunded events carrying revenue for PostHog revenue analytics\n- Subscription Started, Renewed, Payment Failed, Cancelled, Paused and Resumed events\n\nTurn each event on or off in the app settings. Event names follow PostHog's e-commerce spec, so they work with PostHog's templates and revenue analytics out of the box. Works with PostHog Cloud (US and EU) and self-hosted PostHog.",
   "images": [
     {
       "id": "events",
