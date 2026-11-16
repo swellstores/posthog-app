@@ -6,7 +6,7 @@
 	"id": "posthog",
 	"name": "PostHog",
 	"type": "integration",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"images": [
 		{
 			"id": "events",
@@ -18,7 +18,7 @@
 			"id": "revenue",
 			"image_src": "assets/images/2-revenue.png",
 			"title": "Revenue you can trust",
-			"description": "Add Payment Completed and Order Refunded as revenue events in PostHog. Every charge counts once, and refunds subtract revenue, partial ones too."
+			"description": "Add Payment Completed and Order Refunded as revenue events. Every charge counts once, and refunds subtract revenue, partial ones too."
 		},
 		{
 			"id": "subscriptions",
