@@ -2,7 +2,6 @@
 	"description": "Send Swell orders, payments and subscriptions to PostHog",
 	"support_email": "support@swell.is",
 	"documentation_url": "https://developers.swell.is/app-guides/posthog",
-	"price_external": true,
 	"id": "posthog",
 	"name": "PostHog",
 	"type": "integration",
