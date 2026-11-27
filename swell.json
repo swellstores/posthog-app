@@ -6,7 +6,7 @@
 	"id": "posthog",
 	"name": "PostHog",
 	"type": "integration",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"images": [
 		{
 			"id": "events",
