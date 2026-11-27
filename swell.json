@@ -1,5 +1,6 @@
 {
 	"description": "Send Swell orders, payments and subscriptions to PostHog",
+	"repository_url": "https://github.com/swellstores/posthog-app",
 	"support_email": "support@swell.is",
 	"documentation_url": "https://developers.swell.is/app-guides/posthog",
 	"id": "posthog",

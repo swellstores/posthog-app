@@ -83,3 +83,7 @@ swell api get '/:logs?limit=50&where[app_id]=<app record id>'
 swell app version 1.0.0 -m "First release" -y
 swell app release 1.0.0
 ```
+
+## License
+
+MIT. See [LICENSE](LICENSE). Contributions are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md).
